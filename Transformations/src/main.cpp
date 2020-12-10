@@ -117,7 +117,7 @@ void Render(void)
 	VECTOR3D dotPos = { 4.0, 0.0, 0.0 };		
 	drawDot(dotPos, 2.0);	
     drawBox(dotPos,4.0,4.0,4.0);
-	//drawCircle(dotPos);	
+	drawCircle(dotPos, 4.0);	
     glPopMatrix();
 }
 

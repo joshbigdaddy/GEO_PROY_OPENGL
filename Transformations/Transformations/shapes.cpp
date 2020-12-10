@@ -156,16 +156,16 @@ void drawCircle(VECTOR3D position, float sradius)
 	int numDiv = 10;
 	LINE circle;
 	VECTOR3D point;
-	double step = 1.0 / numDiv;
+	double step = 2 * PI / numDiv;
 	for (int i = 0; i <= numDiv; i++)
 	{
 		double t = i * step;
-		point.x = (1 - t * t) / (1 + t * t);
-		point.y = 2.0 * t / (1 + t * t);
-		point.z = 0.0;
-		circle.P.push_back(point);		
+		point.x = sradius * cos(t) + position.x;
+		point.y = sradius * sin(t) + position.y;
+		point.z = position.z;
+		circle.P.push_back(point);
 	}
-	drawLine(circle);	
+	drawLine(circle);
 }
 
 
