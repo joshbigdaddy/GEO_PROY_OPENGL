@@ -41,7 +41,24 @@ VECTOR3D Transform(MATRIX3 m, VECTOR3D a) {
 	MATRIX3 mt = Transpose(m);
 	return VECTOR3D{DotProduct(mt.column0,a),DotProduct(mt.column1,a) ,DotProduct(mt.column2,a) };
 }
-//MATRIX4 InverseOrthogonalMatrix(MATRIX3 A, VECTOR3D t) {}
+MATRIX4 InverseOrthogonalMatrix(MATRIX3 A, VECTOR3D t) {
+
+	double a = -DotProduct(A.column0,t );
+    double b = -DotProduct(A.column1,t );
+	double c = -DotProduct(A.column2,t );
+
+	MATRIX3 At = Transpose(A);
+
+	float matt[] = { 
+		At.column0.x,At.column1.x,At.column2.x,a,
+		At.column0.y,At.column1.y,At.column2.y,b,
+		At.column0.z,At.column1.y,At.column2.y,c,
+		0,0,0,1
+	};
+	MATRIX4 mat=MATRIX4{ *matt };
+	return ;
+
+}
 
 //QUATERNION QuaternionFromAngleAxis(float angle, VECTOR3D axis){}
 //QUATERNION Multiply(QUATERNION a, QUATERNION b) {}
