@@ -157,7 +157,10 @@ void drawCircle(VECTOR3D position, float sradius) {
 	LINE circle;
 	VECTOR3D point;
 	double step = 2 * PI / numDiv;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8859d7f2ea95143ed561e6a88834b755cba245e7
 	for (int i = 0; i <= numDiv; i++)
 	{
 		double t = i * step;

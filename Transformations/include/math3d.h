@@ -13,12 +13,12 @@
 #define RTOD            57.2957795      // radians to degrees
 
 typedef struct {
-    double x,y,z;
+    double x, y, z;
 } VECTOR3D;
 
 
 typedef struct {
-    double r,g,b;
+    double r, g, b;
 } COLOUR;
 
 typedef struct {
@@ -33,25 +33,24 @@ typedef struct {
 } MATRIX4;
 
 typedef struct {
-	double r;
-	double i;
-	double j;
-	double k;
+    double r;
+    double i;
+    double j;
+    double k;
 } QUATERNION;
 
-static const COLOUR grey = {0.7,0.7,0.7};
-static const COLOUR red = {1,0,0};
-static const COLOUR green = {0,1,0};
-static const COLOUR blue = {0,0,1};
-static const COLOUR darkred = {0.6,0,0};
-static const COLOUR darkgreen = {0,0.6,0};
+static const COLOUR grey = { 0.7,0.7,0.7 };
+static const COLOUR red = { 1,0,0 };
+static const COLOUR green = { 0,1,0 };
+static const COLOUR blue = { 0,0,1 };
+static const COLOUR darkred = { 0.6,0,0 };
+static const COLOUR darkgreen = { 0,0.6,0 };
 static const VECTOR3D xVector = { 1.0, 0.0, 0.0 };
 static const VECTOR3D yVector = { 0.0, 1.0, 0.0 };
 static const VECTOR3D zVector = { 0.0, 0.0, 1.0 };
 
 // Funciones sobre vectores
-//TO DO
-VECTOR3D Add(VECTOR3D a, VECTOR3D b);  
+VECTOR3D Add(VECTOR3D a, VECTOR3D b);
 VECTOR3D Substract(VECTOR3D a, VECTOR3D b);
 VECTOR3D MultiplyWithScalar(float scalar, VECTOR3D a);
 double Magnitude(VECTOR3D a);
@@ -60,16 +59,16 @@ VECTOR3D CrossProduct(VECTOR3D a, VECTOR3D b);
 double DotProduct(VECTOR3D a, VECTOR3D b);
 
 // Funciones con matrices
-//TO DO
 MATRIX3 Transpose(MATRIX3 m);
-VECTOR3D Transform (MATRIX3 m, VECTOR3D a);
-//MATRIX4 InverseOrthogonalMatrix(MATRIX3 A, VECTOR3D t);
+VECTOR3D Transform(MATRIX3 m, VECTOR3D a);
+MATRIX4 InverseOrthogonalMatrix(MATRIX3 A, VECTOR3D t);
 
 // Funciones sobre quaterniones
-//TO DO
-//QUATERNION QuaternionFromAngleAxis(float angle, VECTOR3D axis){}
-//QUATERNION Multiply(QUATERNION a, QUATERNION b) {}
-//QUATERNION Conjugate(QUATERNION a) {}
-//VECTOR3D RotateWithQuaternion(VECTOR3D a, QUATERNION q) {}
-
+QUATERNION QuaternionFromAngleAxis(float angle, VECTOR3D axis);
+QUATERNION MultiplyQuaternions(QUATERNION a, QUATERNION b);
+QUATERNION Conjugate(QUATERNION a);
+double MagnitudeQuaternion(QUATERNION a);
+QUATERNION MultiplyQuaternionWithScalar(float scalar, QUATERNION a);
+QUATERNION Inverse(QUATERNION a);
+VECTOR3D RotateWithQuaternion(VECTOR3D a, QUATERNION q);
 #endif
