@@ -58,22 +58,96 @@ void drawLine(LINE line, COLOUR color) {
 	glEnd();
 }
 
+void drawLineLoop(LINE line, COLOUR color) {
+	glBegin(GL_LINE_LOOP);
+	glColor3f(color.r, color.g, color.b);
+	for (auto i = line.P.begin(); i != line.P.end(); i++) {
+		glVertex3f((*i).x, (*i).y, (*i).z);
+	}
+	glEnd();
+}
+
 void drawAxis() 
 {
+	VECTOR3D ori = VECTOR3D{0.0,0.0,0.0};
 	std::vector<VECTOR3D> vecx=std::vector<VECTOR3D>();
+	vecx.push_back(ori);
 	vecx.push_back(xVector);
 	std::vector<VECTOR3D> vecy = std::vector<VECTOR3D>();
+	vecy.push_back(ori);
 	vecy.push_back(yVector);
 	std::vector<VECTOR3D> vecz = std::vector<VECTOR3D>();
+	vecz.push_back(ori);
 	vecz.push_back(zVector);
-	drawLine(LINE{ vecx }, COLOUR{ grey });
-	drawLine(LINE{ vecy }, COLOUR{ grey });
-	drawLine(LINE{ vecz }, COLOUR{ grey });
+	drawLine(LINE{ vecx }, COLOUR{ red });
+	drawLine(LINE{ vecy }, COLOUR{ green });
+	drawLine(LINE{ vecz }, COLOUR{ blue });
 }
 
 
 void drawBox(VECTOR3D center, double lenX, double lenY, double lenZ)
 {
+	///////////////
+	//      |    //
+ 	//  -center- //
+	//      |    //
+	///////////////
+
+	double lenx_half = lenX / 2;
+	double leny_half = lenY / 2;
+	double lenz_half = lenZ / 2;
+
+	// ++ --> +- --> -- --> -+
+	VECTOR3D vertex1 = VECTOR3D{ center.x + lenx_half, center.y + leny_half, center.z + lenz_half };
+	VECTOR3D vertex2 = VECTOR3D{ center.x + lenx_half, center.y - leny_half, center.z + lenz_half };
+	VECTOR3D vertex3 = VECTOR3D{ center.x - lenx_half, center.y - leny_half, center.z + lenz_half };
+	VECTOR3D vertex4 = VECTOR3D{ center.x - lenx_half, center.y + leny_half, center.z + lenz_half };
+
+	VECTOR3D vertex5 = VECTOR3D{ center.x + lenx_half, center.y + leny_half, center.z - lenz_half };
+	VECTOR3D vertex6 = VECTOR3D{ center.x + lenx_half, center.y - leny_half, center.z - lenz_half };
+	VECTOR3D vertex7 = VECTOR3D{ center.x - lenx_half, center.y - leny_half, center.z - lenz_half };
+	VECTOR3D vertex8 = VECTOR3D{ center.x - lenx_half, center.y + leny_half, center.z - lenz_half };
+
+	std::vector<VECTOR3D> vector1 = std::vector<VECTOR3D>();
+	vector1.push_back(vertex1);
+	vector1.push_back(vertex2);
+	vector1.push_back(vertex3);
+	vector1.push_back(vertex4);
+	LINE line1 = LINE{vector1};
+
+	std::vector<VECTOR3D> vector2 = std::vector<VECTOR3D>();
+	vector2.push_back(vertex5);
+	vector2.push_back(vertex6);
+	vector2.push_back(vertex7);
+	vector2.push_back(vertex8);
+	LINE line2 = LINE{ vector2 };
+
+	std::vector<VECTOR3D> vector3 = std::vector<VECTOR3D>();
+	vector3.push_back(vertex1);
+	vector3.push_back(vertex2);
+	vector3.push_back(vertex6);
+	vector3.push_back(vertex5);
+	LINE line3 = LINE{ vector3 };
+
+	std::vector<VECTOR3D> vector4 = std::vector<VECTOR3D>();
+	vector4.push_back(vertex3);
+	vector4.push_back(vertex4);
+	vector4.push_back(vertex8);
+	vector4.push_back(vertex7);
+	LINE line4 = LINE{ vector4 };
+	//Diubujamos el primer cuadrado
+	drawLineLoop(line1, COLOUR{ red });
+	//Dibujamos el segundo cuadrado
+	drawLineLoop(line2, COLOUR{ red });
+
+	//Dibujamos el tercero
+	drawLineLoop(line3, COLOUR{ red });
+
+	//Dibujamos el cuarto
+	drawLineLoop(line4, COLOUR{ red });
+
+
+
 
 }
 
