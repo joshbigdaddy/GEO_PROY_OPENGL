@@ -10,8 +10,6 @@ typedef struct {
 } LINE;
 
 void drawDot(VECTOR3D position, float sradius = 1, COLOUR color = grey);
-
-//TODO
 void drawLine(LINE line, COLOUR color = grey);
 void drawAxis();
 void drawBox(VECTOR3D center, double lenX, double lenY, double lenZ);

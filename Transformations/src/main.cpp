@@ -28,6 +28,8 @@ int main(int argc,char **argv)
 {
     camera.screenwidth = 600;
     camera.screenheight = 400;	
+    camera.aperture = 90;
+    camera.position = { 1.0, 0.0, 0.0 };
 	std::cout << "Pulsa H para reiniciar la posicion de la camara\n";
 	std::cout << "R para rotar la escena\n";
 
@@ -80,12 +82,12 @@ void Display(void)
 	double farValue = 10000;
     
     double aspectRatio  = camera.screenwidth / (double)camera.screenheight;
-    //FRUSTUM centerFrustum = makeFrustum(camera.aperture, aspectRatio, nearValue, farValue);
+    FRUSTUM centerFrustum = makeFrustum(camera.aperture, aspectRatio, nearValue, farValue);
     
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 	gluPerspective(camera.aperture, aspectRatio, nearValue, farValue);
-	//glFrustum(centerFrustum.left, centerFrustum.right, centerFrustum.bottom, centerFrustum.top, centerFrustum.nearValue, centerFrustum.farValue);
+	glFrustum(centerFrustum.left, centerFrustum.right, centerFrustum.bottom, centerFrustum.top, centerFrustum.nearValue, centerFrustum.farValue);
     
     glMatrixMode(GL_MODELVIEW);
     
