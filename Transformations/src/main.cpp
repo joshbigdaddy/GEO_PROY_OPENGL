@@ -115,15 +115,10 @@ void Render(void)
 	glRotatef(rotateAngle, 0.0, 1.0, 0.0);
 	drawAxis();
 	VECTOR3D dotPos = { 4.0, 0.0, 0.0 };		
-<<<<<<< HEAD
-	//drawDot(dotPos, 2.0);	
-    //drawBox(dotPos,4.0,4.0,4.0);
-	drawCircle(dotPos);	
-=======
+
 	drawDot(dotPos, 2.0);	
     drawBox(dotPos,4.0,4.0,4.0);
 	drawCircle(dotPos, 4.0);	
->>>>>>> 8859d7f2ea95143ed561e6a88834b755cba245e7
     glPopMatrix();
 }
 

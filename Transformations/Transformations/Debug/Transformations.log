@@ -1,2 +1,29 @@
-﻿  main.cpp
+﻿  math3d.cpp
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(49,11): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(50,11): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(73,13): warning C4838: la conversión de 'double' en 'float' requiere una conversión de restricción
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(73,13): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(73,26): warning C4838: la conversión de 'double' en 'float' requiere una conversión de restricción
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(73,26): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(73,39): warning C4838: la conversión de 'double' en 'float' requiere una conversión de restricción
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(73,39): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(73,42): warning C4838: la conversión de 'double' en 'float' requiere una conversión de restricción
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(73,42): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(74,13): warning C4838: la conversión de 'double' en 'float' requiere una conversión de restricción
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(74,13): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(74,26): warning C4838: la conversión de 'double' en 'float' requiere una conversión de restricción
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(74,26): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(74,39): warning C4838: la conversión de 'double' en 'float' requiere una conversión de restricción
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(74,39): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(74,42): warning C4838: la conversión de 'double' en 'float' requiere una conversión de restricción
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(74,42): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(75,13): warning C4838: la conversión de 'double' en 'float' requiere una conversión de restricción
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(75,13): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(75,26): warning C4838: la conversión de 'double' en 'float' requiere una conversión de restricción
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(75,26): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(75,39): warning C4838: la conversión de 'double' en 'float' requiere una conversión de restricción
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(75,39): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(75,42): warning C4838: la conversión de 'double' en 'float' requiere una conversión de restricción
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(75,42): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Transformations\math3d.cpp(94,40): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
   Transformations.vcxproj -> C:\Users\Joshbigdaddy\Desktop\MASTER\GEO_PROY_PROJ_FINAL\Transformations\Debug\Transformations.exe
