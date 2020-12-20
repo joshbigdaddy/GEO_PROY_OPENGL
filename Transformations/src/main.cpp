@@ -91,9 +91,9 @@ void Display(void)
     
     glLoadIdentity();
 	VECTOR3D target = { 0.0,0.0, 0.0 };	
-    gluLookAt(camera.position.x,camera.position.y,camera.position.z, target.x , target.y, target.z, camera.up.x,camera.up.y,camera.up.z);     
-	//MATRIX4 lookAtMatrix = lookAt(camera.position, target, camera.up);
-    //glLoadMatrixf(lookAtMatrix.m);
+    //gluLookAt(camera.position.x,camera.position.y,camera.position.z, target.x , target.y, target.z, camera.up.x,camera.up.y,camera.up.z);     
+	MATRIX4 lookAtMatrix = lookAt(camera.position, target, camera.up);
+    glLoadMatrixf(lookAtMatrix.m);
 
     glViewport(0,0,camera.screenwidth,camera.screenheight);
     
