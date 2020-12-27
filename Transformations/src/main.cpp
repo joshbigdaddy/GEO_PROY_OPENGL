@@ -29,7 +29,9 @@ int main(int argc,char **argv)
     camera.screenwidth = 600;
     camera.screenheight = 400;	
     camera.aperture = 90;
-    camera.position = { 1.0, 0.0, 0.0 };
+    camera.position = { 10.0, 0.0, 10.0 };
+    camera.up = { 0.0, 0.0, 0.0 };
+
 	std::cout << "Pulsa H para reiniciar la posicion de la camara\n";
 	std::cout << "R para rotar la escena\n";
 
@@ -86,13 +88,14 @@ void Display(void)
     
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-	gluPerspective(camera.aperture, aspectRatio, nearValue, farValue);
+	//gluPerspective(camera.aperture, aspectRatio, nearValue, farValue);
 	glFrustum(centerFrustum.left, centerFrustum.right, centerFrustum.bottom, centerFrustum.top, centerFrustum.nearValue, centerFrustum.farValue);
     
+
     glMatrixMode(GL_MODELVIEW);
     
     glLoadIdentity();
-	VECTOR3D target = { 0.0,0.0, 0.0 };	
+	VECTOR3D target = { 0.0, 0.0, 0.0 };	
     //gluLookAt(camera.position.x,camera.position.y,camera.position.z, target.x , target.y, target.z, camera.up.x,camera.up.y,camera.up.z);     
 	MATRIX4 lookAtMatrix = lookAt(camera.position, target, camera.up);
     glLoadMatrixf(lookAtMatrix.m);

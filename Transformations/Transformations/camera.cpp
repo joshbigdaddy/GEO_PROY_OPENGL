@@ -9,12 +9,12 @@ FRUSTUM makeFrustum(double fovY, double aspectRatio, double nearValue, double fa
 	double width = height * aspectRatio; // half width of near plane
 
 	FRUSTUM ret;
-	ret.bottom = -height;
-	ret.farValue = farValue;
-	ret.nearValue = nearValue;
 	ret.left = -width;
 	ret.right = width;
+	ret.bottom = -height;
 	ret.top = height;
+	ret.nearValue = nearValue;
+	ret.farValue = farValue;
 	return ret;
 }
 
