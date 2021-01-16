@@ -31,7 +31,7 @@ double DotProduct(VECTOR3D a, VECTOR3D b) {
 }
 
 MATRIX3 Transpose(MATRIX3 m) {
-	return MATRIX3{ VECTOR3D{m.column0.x,m.column0.x,m.column0.x},
+	return MATRIX3{ VECTOR3D{m.column0.x,m.column1.x,m.column2.x},
 					VECTOR3D{m.column0.y,m.column1.y,m.column2.y},
 					VECTOR3D{m.column0.z,m.column1.z,m.column2.z} };
 }
@@ -46,8 +46,8 @@ QUATERNION QuaternionFromAngleAxis(float angle, VECTOR3D axis) {
 }
 
 QUATERNION MultiplyQuaternions(QUATERNION a, QUATERNION b) {
-	float Sa = a.r;
-	float Sb = b.r;
+	double Sa = a.r;
+	double Sb = b.r;
 	VECTOR3D Va = { a.i, a.j, a.k };
 	VECTOR3D Vb = { b.i, b.j, b.k };
 
@@ -67,15 +67,13 @@ MATRIX4 InverseOrthogonalMatrix(MATRIX3 A, VECTOR3D t) {
     double b = -DotProduct(A.column1,t );
 	double c = -DotProduct(A.column2,t );
 
-	MATRIX3 At = Transpose(A);
-
-	float matt[] = { 
-		At.column0.x,At.column1.x,At.column2.x,a,
-		At.column0.y,At.column1.y,At.column2.y,b,
-		At.column0.z,At.column1.y,At.column2.y,c,
-		0,0,0,1
-	};
-	MATRIX4 mat=MATRIX4{ *matt };
+	MATRIX4 mat = MATRIX4{ {
+		(float)A.column0.x,(float)A.column1.x,(float)A.column2.x,0.0f,
+		(float)A.column0.y,(float)A.column1.y,(float)A.column2.y,0.0f,
+		(float)A.column0.z,(float)A.column1.z,(float)A.column2.z,0.0f,
+		(float)a,(float)b,(float)c,1.0f
+	} };
+	
 	return mat;
 
 }

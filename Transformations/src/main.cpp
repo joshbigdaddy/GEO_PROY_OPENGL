@@ -26,11 +26,7 @@ CAMERA camera;
 
 int main(int argc,char **argv)
 {
-    camera.screenwidth = 600;
-    camera.screenheight = 400;	
-    camera.aperture = 90;
-    camera.position = { 10.0, 0.0, 10.0 };
-    camera.up = { 0.0, 0.0, 0.0 };
+    InitCamera();
 
 	std::cout << "Pulsa H para reiniciar la posicion de la camara\n";
 	std::cout << "R para rotar la escena\n";
@@ -44,7 +40,6 @@ int main(int argc,char **argv)
     glutIdleFunc(HandleIdle);
     glutKeyboardFunc(HandleKeyboard);
     Init();
-    InitCamera();
     Lighting();
     
     glutMainLoop();
@@ -93,9 +88,8 @@ void Display(void)
     
 
     glMatrixMode(GL_MODELVIEW);
-    
     glLoadIdentity();
-	VECTOR3D target = { 0.0, 0.0, 0.0 };	
+	VECTOR3D target = { 0.0, 0.0, 0.0 };
     //gluLookAt(camera.position.x,camera.position.y,camera.position.z, target.x , target.y, target.z, camera.up.x,camera.up.y,camera.up.z);     
 	MATRIX4 lookAtMatrix = lookAt(camera.position, target, camera.up);
     glLoadMatrixf(lookAtMatrix.m);
@@ -201,6 +195,9 @@ void HandleReshape(int w,int h)
 
 void InitCamera()
 {
+    camera.screenwidth = 600;
+    camera.screenheight = 400;
+
     camera.aperture = 45;
 	rotateAngle = 0.0;
 

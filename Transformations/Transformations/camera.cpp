@@ -20,16 +20,23 @@ FRUSTUM makeFrustum(double fovY, double aspectRatio, double nearValue, double fa
 
 MATRIX4 lookAt(VECTOR3D eyePosition, VECTOR3D target, VECTOR3D upVector) {
 
-	VECTOR3D forward = Substract( eyePosition , target);
-	VECTOR3D side = CrossProduct( upVector , forward);
-	VECTOR3D up = CrossProduct (forward , side);
-	forward = Normalized(forward);
-	side = Normalized(side);
-	up = Normalized(up);
+	VECTOR3D zaxis = Normalized(Substract(target, eyePosition));
+	VECTOR3D xaxis = Normalized(CrossProduct(zaxis, upVector));
+	VECTOR3D yaxis = CrossProduct (xaxis, zaxis);
 
-	MATRIX3 mat = MATRIX3{forward.x,side.x,up.x,
-		forward.y,side.y,up.y,
-		forward.z,side.z,up.z};
+	zaxis = MultiplyWithScalar(-1,zaxis);
 
-	return InverseOrthogonalMatrix(mat, eyePosition);
-};
+	MATRIX3 mat = MATRIX3{	xaxis.x, xaxis.y, xaxis.z,
+							yaxis.x, yaxis.y, yaxis.z,
+							zaxis.x, zaxis.y, zaxis.z };
+
+	MATRIX4 lookAtMat = InverseOrthogonalMatrix(mat, eyePosition);
+
+	return lookAtMat;
+}
+
+void updateCameraOrientation(EULER& euler) {
+
+}
+
+
