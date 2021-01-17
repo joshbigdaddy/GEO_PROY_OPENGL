@@ -30,10 +30,10 @@ typedef struct {
 	QUATERNION orientation; // Cached quaternion equivalent of this	euler object.
 } EULER;
 
-//TO DO
 FRUSTUM makeFrustum(double fovY, double aspectRatio, double nearValue, double farValue);
 MATRIX4 lookAt(VECTOR3D eyePosition, VECTOR3D target, VECTOR3D upVector);
 
+//TO DO
 void updateCameraOrientation(EULER& euler);
 VECTOR3D getForward(EULER euler);
 VECTOR3D getUp(EULER euler);

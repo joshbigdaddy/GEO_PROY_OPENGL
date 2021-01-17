@@ -22,6 +22,7 @@ void HandleMousePassiveMotion(int x, int y);
 double rotateSpeed = 3;
 double rotateAngle = 0;
 CAMERA camera;
+EULER eulerCamera;
 
 
 int main(int argc,char **argv)
@@ -117,7 +118,8 @@ void Render(void)
 
 	drawDot(dotPos, 2.0);	
     drawBox(dotPos,4.0,4.0,4.0);
-	drawCircle(dotPos, 4.0);	
+	drawCircle(dotPos, 4.0);
+    drawCircle2(dotPos, 1.0);
     glPopMatrix();
 }
 
@@ -212,5 +214,6 @@ void InitCamera()
     camera.up.x = 0;
     camera.up.y = 1;
     camera.up.z = 0;
+
 }
 

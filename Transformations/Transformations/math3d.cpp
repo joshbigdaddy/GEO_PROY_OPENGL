@@ -41,6 +41,23 @@ VECTOR3D Transform(MATRIX3 m, VECTOR3D a) {
 	return VECTOR3D{ DotProduct(mt.column0,a),DotProduct(mt.column1,a) ,DotProduct(mt.column2,a) };
 }
 
+MATRIX4 InverseOrthogonalMatrix(MATRIX3 A, VECTOR3D t) {
+
+	double a = -DotProduct(A.column0, t);
+	double b = -DotProduct(A.column1, t);
+	double c = -DotProduct(A.column2, t);
+
+	MATRIX4 mat = MATRIX4{ {
+		(float)A.column0.x,(float)A.column1.x,(float)A.column2.x,0.0f,
+		(float)A.column0.y,(float)A.column1.y,(float)A.column2.y,0.0f,
+		(float)A.column0.z,(float)A.column1.z,(float)A.column2.z,0.0f,
+		(float)a,(float)b,(float)c,1.0f
+	} };
+
+	return mat;
+
+}
+
 QUATERNION QuaternionFromAngleAxis(float angle, VECTOR3D axis) {
 	return QUATERNION{ axis.x * sin(angle / 2), axis.y * sin(angle / 2), axis.z * sin(angle / 2), cos(angle / 2) };
 }
@@ -59,23 +76,6 @@ QUATERNION MultiplyQuaternions(QUATERNION a, QUATERNION b) {
 
 QUATERNION Conjugate(QUATERNION a) {
 	return QUATERNION{ a.r, -a.i, -a.j, -a.k };
-}
-
-MATRIX4 InverseOrthogonalMatrix(MATRIX3 A, VECTOR3D t) {
-
-	double a = -DotProduct(A.column0,t );
-    double b = -DotProduct(A.column1,t );
-	double c = -DotProduct(A.column2,t );
-
-	MATRIX4 mat = MATRIX4{ {
-		(float)A.column0.x,(float)A.column1.x,(float)A.column2.x,0.0f,
-		(float)A.column0.y,(float)A.column1.y,(float)A.column2.y,0.0f,
-		(float)A.column0.z,(float)A.column1.z,(float)A.column2.z,0.0f,
-		(float)a,(float)b,(float)c,1.0f
-	} };
-	
-	return mat;
-
 }
 
 double MagnitudeQuaternion(QUATERNION a) {

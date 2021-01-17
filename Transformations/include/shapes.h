@@ -14,5 +14,5 @@ void drawLine(LINE line, COLOUR color = grey);
 void drawAxis();
 void drawBox(VECTOR3D center, double lenX, double lenY, double lenZ);
 void drawCircle(VECTOR3D position, float sradius = 1);
-
+void drawCircle2(VECTOR3D position, float sradius = 1);
 #endif

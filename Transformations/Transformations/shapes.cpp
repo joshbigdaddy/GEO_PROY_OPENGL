@@ -87,11 +87,11 @@ void drawAxis()
 
 void drawBox(VECTOR3D center, double lenX, double lenY, double lenZ)
 {
-	///////////////
-	//      |    //
- 	//  -center- //
-	//      |    //
-	///////////////
+	////////////
+	//   \    //
+ 	//-center-//
+	//    \   //
+	////////////
 
 	double lenx_half = lenX / 2;
 	double leny_half = lenY / 2;
@@ -145,10 +145,6 @@ void drawBox(VECTOR3D center, double lenX, double lenY, double lenZ)
 
 	//Dibujamos el cuarto
 	drawLineLoop(line4, COLOUR{ red });
-
-
-
-
 }
 
 void drawCircle(VECTOR3D position, float sradius) {
@@ -167,6 +163,35 @@ void drawCircle(VECTOR3D position, float sradius) {
 		circle.P.push_back(point);
 	}
 	drawLine(circle);
+}
+
+void drawCircle2(VECTOR3D position, float sradius) {
+
+	int numDiv = 10;
+	VECTOR3D point;
+
+	double step = 2 * PI / numDiv;
+
+	glPushMatrix();
+	glTranslatef(position.x, position.y, position.z);
+
+	glBegin(GL_POLYGON);
+	for (int i = 0; i <= numDiv; i++)
+	{
+		double t = i * step;
+		point.x = sradius * cos(t) + position.x;
+		point.y = sradius * sin(t) + position.y;
+		point.z = position.z;
+
+		glColor3f(255, 255, 255);
+
+		glNormal3f(point.x, point.y, point.z);
+		glVertex3f(point.x, point.y, point.z);
+
+	}
+	glEnd();
+
+	glPopMatrix();
 }
 
 

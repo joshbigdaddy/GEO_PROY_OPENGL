@@ -36,7 +36,19 @@ MATRIX4 lookAt(VECTOR3D eyePosition, VECTOR3D target, VECTOR3D upVector) {
 }
 
 void updateCameraOrientation(EULER& euler) {
+	QUATERNION pitch = QuaternionFromAngleAxis(euler.pitch, VECTOR3D{ 0,1,0 });
+	QUATERNION yaw = QuaternionFromAngleAxis(euler.yaw, VECTOR3D{ 0,0,1 });
+	QUATERNION roll = QuaternionFromAngleAxis(euler.roll, VECTOR3D{ 1,0,0 });
 
+	euler.orientation = MultiplyQuaternions(euler.orientation, pitch);
+	euler.orientation = MultiplyQuaternions(euler.orientation, yaw);
+	euler.orientation = MultiplyQuaternions(euler.orientation, roll);
 }
 
+VECTOR3D getForward(EULER euler) {
+	return RotateWithQuaternion(VECTOR3D{ 0,0,-1 }, euler.orientation);
+}
 
+VECTOR3D getUp(EULER euler) {
+	return RotateWithQuaternion(VECTOR3D{ 0,1,0 }, euler.orientation);
+}
