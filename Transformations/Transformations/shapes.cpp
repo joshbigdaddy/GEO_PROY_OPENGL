@@ -167,29 +167,25 @@ void drawCircle(VECTOR3D position, float sradius) {
 
 void drawCircle2(VECTOR3D position, float sradius) {
 
-	int numDiv = 10;
-	VECTOR3D point;
+	glPushMatrix();
 
+	int numDiv = 10;
+	LINE circle;
+	VECTOR3D point;
 	double step = 2 * PI / numDiv;
 
-	glPushMatrix();
-	glTranslatef(position.x, position.y, position.z);
-
-	glBegin(GL_POLYGON);
 	for (int i = 0; i <= numDiv; i++)
 	{
 		double t = i * step;
-		point.x = sradius * cos(t) + position.x;
-		point.y = sradius * sin(t) + position.y;
-		point.z = position.z;
-
-		glColor3f(255, 255, 255);
-
-		glNormal3f(point.x, point.y, point.z);
-		glVertex3f(point.x, point.y, point.z);
-
+		point.x = sradius * cos(t);
+		point.y = sradius * sin(t);
+		point.z = 0;
+		circle.P.push_back(point);
 	}
-	glEnd();
+
+	glTranslatef(position.x, position.y, position.z);
+
+	drawLine(circle);
 
 	glPopMatrix();
 }

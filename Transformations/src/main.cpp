@@ -20,10 +20,12 @@ void HandleMouseMotion(int x, int y);
 void HandleMousePassiveMotion(int x, int y);
 
 double rotateSpeed = 3;
+double moveSpeed = 3;
 double rotateAngle = 0;
 CAMERA camera;
 EULER eulerCamera;
-
+int mouseFinal[2];
+int mouseInicial[2];
 
 int main(int argc,char **argv)
 {
@@ -40,6 +42,8 @@ int main(int argc,char **argv)
     glutReshapeWindow(camera.screenwidth,camera.screenheight);
     glutIdleFunc(HandleIdle);
     glutKeyboardFunc(HandleKeyboard);
+    glutMotionFunc(HandleMouseMotion);
+    glutPassiveMotionFunc(HandleMousePassiveMotion);
     Init();
     Lighting();
     
@@ -90,9 +94,9 @@ void Display(void)
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-	VECTOR3D target = { 0.0, 0.0, 0.0 };
+	VECTOR3D target = Add(camera.position, getForward(eulerCamera));
     //gluLookAt(camera.position.x,camera.position.y,camera.position.z, target.x , target.y, target.z, camera.up.x,camera.up.y,camera.up.z);     
-	MATRIX4 lookAtMatrix = lookAt(camera.position, target, camera.up);
+	MATRIX4 lookAtMatrix = lookAt(camera.position, target, getUp(eulerCamera));
     glLoadMatrixf(lookAtMatrix.m);
 
     glViewport(0,0,camera.screenwidth,camera.screenheight);
@@ -119,7 +123,7 @@ void Render(void)
 	drawDot(dotPos, 2.0);	
     drawBox(dotPos,4.0,4.0,4.0);
 	drawCircle(dotPos, 4.0);
-    drawCircle2(dotPos, 1.0);
+    drawCircle2(dotPos, 5.0);
     glPopMatrix();
 }
 
@@ -165,25 +169,52 @@ void HandleKeyboard(unsigned char key,int x, int y)
         case 'r':
             rotateAngle += rotateSpeed;
             break;     
-
         case 'h':
         case 'H':
             InitCamera();
             break;		
+        case 'w':
+        case 'W':
+            camera.position = Add(camera.position, MultiplyWithScalar(moveSpeed, getForward(eulerCamera)));
+            break;
+        case 's':
+        case 'S':
+            camera.position = Substract(camera.position, MultiplyWithScalar(moveSpeed, getForward(eulerCamera)));
+            break;
+        case 'a':
+        case 'A':
+            camera.position = Add(camera.position, MultiplyWithScalar(moveSpeed, CrossProduct( getUp(eulerCamera) ,getForward(eulerCamera))));
+            break;
+        case 'd':
+        case 'D':
+            camera.position = Substract(camera.position, MultiplyWithScalar(moveSpeed, CrossProduct(getUp(eulerCamera), getForward(eulerCamera))));
+            break;
     }
-}
-
-void HandleIdle(void)
-{
-    glutPostRedisplay();
 }
 
 void HandleMouseMotion(int x, int y)
 {
+    mouseFinal[0] = x;
+    mouseFinal[1] = y;
+
+    eulerCamera.yaw += (mouseInicial[0] - mouseFinal[0]) * 0.1f;
+    eulerCamera.pitch += (mouseInicial[1] - mouseFinal[1]) * -0.1f;
+    updateCameraOrientation(eulerCamera);
+
+    mouseInicial[0] = x;
+    mouseInicial[1] = y;
 }
 
 void HandleMousePassiveMotion(int x, int y)
 {
+    mouseInicial[0] = x;
+    mouseInicial[1] = y;
+}
+
+
+void HandleIdle(void)
+{
+    glutPostRedisplay();
 }
 
 void HandleReshape(int w,int h)
@@ -204,16 +235,20 @@ void InitCamera()
 	rotateAngle = 0.0;
 
     camera.position.x = 5;
-    camera.position.y = 10;
-    camera.position.z = 20;
+    camera.position.y = 0;
+    camera.position.z = -50;
     
-    camera.direction.x = -camera.position.x;
-    camera.direction.y = -camera.position.y;
-    camera.direction.z = -camera.position.z;
+    //camera.direction.x = -camera.position.x;
+    //camera.direction.y = -camera.position.y;
+    //camera.direction.z = -camera.position.z;
     
-    camera.up.x = 0;
-    camera.up.y = 1;
-    camera.up.z = 0;
+    //camera.up.x = 0;
+    //camera.up.y = 1;
+    //camera.up.z = 0;
 
+    eulerCamera.pitch = 0;
+    eulerCamera.roll = 0;
+    eulerCamera.yaw = 0;
+    updateCameraOrientation(eulerCamera);
 }
 

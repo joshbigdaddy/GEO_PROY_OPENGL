@@ -20,11 +20,11 @@ FRUSTUM makeFrustum(double fovY, double aspectRatio, double nearValue, double fa
 
 MATRIX4 lookAt(VECTOR3D eyePosition, VECTOR3D target, VECTOR3D upVector) {
 
-	VECTOR3D zaxis = Normalized(Substract(target, eyePosition));
+	VECTOR3D zaxis = Normalized(Substract(eyePosition, target));
 	VECTOR3D xaxis = Normalized(CrossProduct(zaxis, upVector));
 	VECTOR3D yaxis = CrossProduct (xaxis, zaxis);
 
-	zaxis = MultiplyWithScalar(-1,zaxis);
+	xaxis = MultiplyWithScalar(-1, xaxis);
 
 	MATRIX3 mat = MATRIX3{	xaxis.x, xaxis.y, xaxis.z,
 							yaxis.x, yaxis.y, yaxis.z,
@@ -36,19 +36,19 @@ MATRIX4 lookAt(VECTOR3D eyePosition, VECTOR3D target, VECTOR3D upVector) {
 }
 
 void updateCameraOrientation(EULER& euler) {
-	QUATERNION pitch = QuaternionFromAngleAxis(euler.pitch, VECTOR3D{ 0,1,0 });
-	QUATERNION yaw = QuaternionFromAngleAxis(euler.yaw, VECTOR3D{ 0,0,1 });
-	QUATERNION roll = QuaternionFromAngleAxis(euler.roll, VECTOR3D{ 1,0,0 });
+	QUATERNION pitch = QuaternionFromAngleAxis(euler.pitch, zVector);
+	QUATERNION yaw = QuaternionFromAngleAxis(euler.yaw, yVector);
+	QUATERNION roll = QuaternionFromAngleAxis(euler.roll, xVector);
 
-	euler.orientation = MultiplyQuaternions(euler.orientation, pitch);
+	euler.orientation = pitch;
 	euler.orientation = MultiplyQuaternions(euler.orientation, yaw);
 	euler.orientation = MultiplyQuaternions(euler.orientation, roll);
 }
 
 VECTOR3D getForward(EULER euler) {
-	return RotateWithQuaternion(VECTOR3D{ 0,0,-1 }, euler.orientation);
+	return Normalized(RotateWithQuaternion( MultiplyWithScalar(-1, zVector), euler.orientation));
 }
 
 VECTOR3D getUp(EULER euler) {
-	return RotateWithQuaternion(VECTOR3D{ 0,1,0 }, euler.orientation);
+	return Normalized(RotateWithQuaternion(yVector, euler.orientation));
 }

@@ -43,15 +43,16 @@ VECTOR3D Transform(MATRIX3 m, VECTOR3D a) {
 
 MATRIX4 InverseOrthogonalMatrix(MATRIX3 A, VECTOR3D t) {
 
-	double a = -DotProduct(A.column0, t);
-	double b = -DotProduct(A.column1, t);
-	double c = -DotProduct(A.column2, t);
+	A = Transpose(A);
+
+	VECTOR3D vec = Transform(A, t);
+
 
 	MATRIX4 mat = MATRIX4{ {
-		(float)A.column0.x,(float)A.column1.x,(float)A.column2.x,0.0f,
-		(float)A.column0.y,(float)A.column1.y,(float)A.column2.y,0.0f,
-		(float)A.column0.z,(float)A.column1.z,(float)A.column2.z,0.0f,
-		(float)a,(float)b,(float)c,1.0f
+		(float)A.column0.x,(float)A.column0.y,(float)A.column0.z,0.0f,
+		(float)A.column1.x,(float)A.column1.y,(float)A.column1.z,0.0f,
+		(float)A.column2.x,(float)A.column2.y,(float)A.column2.z,0.0f,
+		(float)-vec.x,(float)-vec.y,(float)-vec.z,1.0f
 	} };
 
 	return mat;
@@ -59,7 +60,7 @@ MATRIX4 InverseOrthogonalMatrix(MATRIX3 A, VECTOR3D t) {
 }
 
 QUATERNION QuaternionFromAngleAxis(float angle, VECTOR3D axis) {
-	return QUATERNION{ axis.x * sin(angle / 2), axis.y * sin(angle / 2), axis.z * sin(angle / 2), cos(angle / 2) };
+	return QUATERNION{ axis.x * sin(angle * DTOR / 2), axis.y * sin(angle * DTOR / 2), axis.z * sin(angle * DTOR / 2), cos(angle * DTOR / 2) };
 }
 
 QUATERNION MultiplyQuaternions(QUATERNION a, QUATERNION b) {
@@ -83,7 +84,7 @@ double MagnitudeQuaternion(QUATERNION a) {
 }
 
 QUATERNION MultiplyQuaternionWithScalar(float scalar, QUATERNION a) {
-	return { a.r * scalar, a.i * scalar, a.j * scalar, a.k * scalar };
+	return QUATERNION { a.r * scalar, a.i * scalar, a.j * scalar, a.k * scalar };
 }
 
 QUATERNION Inverse(QUATERNION a) {
